@@ -1,3 +1,11 @@
+.Logo {
+  background-image: url('logo1.png');
+  background-size: contain;
+  border-radius: 1000px;
+  background-position: center;
+  width: 220px;
+  height: 220px;
+}
 body {
   font-family: Arial, sans-serif;
   margin: 0;
