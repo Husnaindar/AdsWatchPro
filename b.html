@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #fff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+        .help {
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .content {
+            font-size: 14px;
+            color: #333;
+        }
+        .box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .confirm-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .urdu {
+            direction: rtl;
+            text-align: right;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="warning">⚠️ Warning (وارننگ)</div>
+    </div>
+    <div class="content">
+        <p>Please pay with the same wallet and fill in the correct TID to avoid failure.</p>
+        <p class="urdu">براہ کرم اسی بٹوے سے ادائیگی کریں اور ناکامی سے بچنے کے لیے درست DIT بھریں۔</p>
+        <p>Please make payment to the account number below.</p>
+        <p class="urdu">براہ کرم نیچے دیئے گئے اکاؤنٹ نمبر پر ادائیگی کریں۔</p>
+        <div class="box">
+            <div class="row">
+                <span class="label">Wallet (پرس)</span>
+                <span>Easypaisa</span>
+            </div>
+            <div class="row">
+                <span class="label">Account (اکاؤنٹ)</span>
+                <span>00000000000</span>
+            </div>
+            <div class="row">
+                <span class="label">Quantity (مقدار)</span>
+                <span>1000</span>
+            </div>
+            <div class="row">
+                <span class="label">Countdown (الٹی گنتی)</span>
+                <span id="timer">20:00</span>
+            </div>
+        </div>
+        <p>Fill in the correct TID (درست DIT پر کریں).</p>
+        <input type="text" id="tid-input" class="input-field" placeholder="11-digit serial number (11 نمبر سیریل)" maxlength="11"><br /><br />
+        <button class="confirm-btn" onclick="validateTID()">Confirm (تصدیق کریں)</button>
+        <div id="success-message"></div>
+    </div>
+    <script>
+        // Simple countdown timer (example)
+        let time = 1200; // 20:00 seconds
+        const timerElement = document.getElementById('timer');
+        setInterval(() => {
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            if (time <= 0) clearInterval();
+            time--;
+        }, 1000);
+
+        function validateTID() {
+            const tidInput = document.getElementById('tid-input');
+            if (tidInput.value.length === 11) {
+                document.getElementById('success-message').innerHTML = '<div class="success-message">Deposit successful!</div>';
+            }
+        }
+    </script>
+</body>
+</html>
